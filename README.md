@@ -1,4 +1,4 @@
-# Percy Playwright Sample (Valid + Broken 3rd-party assets)
+# Percy Playwright Debugging (Valid + Broken 3rd-party assets)
 
 This sample repo demonstrates:
 - A simple static app with a page that uses valid 3rd-party assets (`public/valid.html`)
@@ -7,26 +7,25 @@ This sample repo demonstrates:
 - A minimal Express static server (server.js)
 
 ## Setup (local)
-1. Clone or extract the zip.
-2. Install deps:
+
+1. Install deps:
    ```
    npm install
+   npm install --save-dev @percy/cli
+   npx percy --version. #checking the version
    ```
-3. Start the static server (in one terminal):
+2. Start the static server (in one terminal):
    ```
-   npm start
-   # server runs at http://localhost:3000
+   npm start     # server runs at http://localhost:3000
+   
    ```
-4. In another terminal run Percy-enabled Playwright tests:
+3. In another terminal run Percy-enabled Playwright tests:
    - Make sure you have a Percy project and set the `PERCY_TOKEN` environment variable.
    - Run:
    ```
    npx percy exec -- npx playwright test
    ```
-   Or if you prefer the npm script:
-   ```
-   npm run percy:test
-   ```
+  
 
 ## What to expect
 - `Valid assets page` snapshot: should render correctly if external font & image are reachable.
@@ -51,6 +50,6 @@ This sample repo demonstrates:
 - `.percy-support.npmrc` — sample (replace with your token if using npm registry for percy support)
 
 ## Notes
-- Replace `PERCY_TOKEN` environment variable with your Percy token.
+
 - You can modify `public/broken.html` to toggle which assets are broken.
 - This sample is intentionally simple so you can inspect how Percy treats third-party assets that 404.
